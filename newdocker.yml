@@ -1,15 +1,16 @@
 - hosts: node1.com
 
-  vars_prompt:
-      - name: image_name
-        prompt: "Docker Image Name: "
-        private: no
-      - name: container_name
-        prompt: "Docker Container Name: "
-        private: no
+  #vars_prompt:
+  #   - name: image_name
+  #      prompt: "Docker Image Name: "
+  #     private: no
+  #    - name: container_name
+  #      prompt: "Docker Container Name: "
+  #      private: no
   vars:
     ansible_become_pass: "Bristol@27"
-
+    image_name: centos:8
+    container_name: Five
   tasks:
       - name: Creating Repo for yum
         become: true
