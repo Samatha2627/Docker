@@ -10,6 +10,7 @@
 
   tasks:
       - name: Creating Repo for yum
+        become: true
         yum_repository:
             name: docker
             file: docker
@@ -18,8 +19,10 @@
             gpgcheck: no
 
       - name: Installing Python3...
+        become: true
         command: "yum -y install python3"
       - name: Install Docker
+        become: true
         yum:
             name: "{{ item }}"
             state: installed
@@ -29,6 +32,7 @@
             - containerd.io
 
       - name: Starting Docker services...
+        become: true
         service:
             name: "docker"
             state: started
@@ -37,6 +41,7 @@
             ansible_python_interpreter: /bin/python3
 
       - name: build the image
+        become: true
         docker_image: 
              name: "{{ image_name }}"
              state: present
@@ -44,6 +49,7 @@
             ansible_python_interpreter: /bin/python3
 
       - name: "Launching {{ container_name }} Container"
+        become: true
         docker_container:
             name: "{{ container_name }}"
             image: "{{ image_name }}"
@@ -53,4 +59,3 @@
             tty: yes
         vars:
             ansible_python_interpreter: /bin/python3
-
