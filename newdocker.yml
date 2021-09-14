@@ -8,7 +8,7 @@
   #      prompt: "Docker Container Name: "
   #      private: no
   vars:
-    ansible_become_pass: "Bristol@27"
+    ansible_become_pass: "XXXXXXX"
     image_name: centos:8
     container_name: Five
   tasks:
